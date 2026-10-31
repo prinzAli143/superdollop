@@ -99,7 +99,7 @@ a { color: inherit; }
 /* ---------- hero ---------- */
 .hero {
   position: relative;
-  padding: clamp(48px, 8vw, 96px) 0 clamp(56px, 8vw, 104px);
+  padding: clamp(48px, 8vw, 96px) 0 clamp(96px, 11vw, 150px);
   background:
     radial-gradient(60% 70% at 85% 30%, rgba(123, 77, 255, 0.10), transparent 70%),
     radial-gradient(50% 60% at 10% 90%, rgba(214, 63, 174, 0.08), transparent 70%);
@@ -128,6 +128,7 @@ a { color: inherit; }
 
 .hero h1 { margin-top: 24px; font-size: clamp(34px, 4.2vw, 54px); font-weight: 800; }
 .hero h1 .grad { display: block; }
+.nowrap { white-space: nowrap; }
 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { margin-top: 22px; max-width: 540px; font-size: clamp(17px, 1.5vw, 19px); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
@@ -157,7 +158,47 @@ a { color: inherit; }
 .float-card strong { display: block; color: var(--ink); }
 .float-card small { color: var(--muted); }
 .float-ig { top: 8%; left: -12%; }
-.float-in { bottom: 8%; right: -10%; animation-delay: -3s; }
+.float-in { top: 34%; right: -14%; animation-delay: -3s; }
+
+/* illustrative growth chart, overlapping the badge */
+.growth-card {
+  position: absolute;
+  left: -16%;
+  bottom: -24%;
+  width: 64%;
+  margin: 0;
+  padding: 14px 16px 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.growth-card figcaption,
+.step-chart figcaption { display: flex; align-items: center; justify-content: space-between; gap: 8px; line-height: 1.25; }
+.growth-card figcaption strong { display: block; color: var(--ink); font-size: 14px; }
+.growth-card figcaption small { color: var(--muted); font-size: 11px; }
+.trend { padding: 3px 9px; border-radius: 999px; background: rgba(34, 197, 94, 0.12); color: #15803d; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.step-chart { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.step-chart figcaption { color: var(--ink); font-size: 13px; font-weight: 700; }
+.step-chart small { color: var(--muted); font-weight: 500; }
+.growth-card svg,
+.step-chart svg { display: block; width: 100%; height: auto; margin-top: 6px; overflow: visible; }
+.growth-card .base,
+.step-chart .base { stroke: var(--line); stroke-width: 1; }
+.growth-card .area { fill: url(#growth-fill); }
+.step-chart .area { fill: url(#growth-fill-step); }
+.growth-card .line,
+.step-chart .line { fill: none; stroke: #7b4dff; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.growth-card .end,
+.step-chart .end { fill: #7b4dff; stroke: #fff; stroke-width: 2; }
+.growth-card .pt rect,
+.step-chart .pt rect { fill: transparent; }
+.growth-card .pt circle,
+.step-chart .pt circle { fill: #7b4dff; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity 0.15s; }
+.growth-card .pt:hover circle,
+.step-chart .pt:hover circle { opacity: 1; }
+.growth-card .axis text,
+.step-chart .axis text { fill: var(--muted); font-size: 9px; font-family: var(--font); }
 @keyframes bob { 50% { transform: translateY(-8px); } }
 
 /* network marks */
@@ -176,7 +217,15 @@ a { color: inherit; }
 .net-ig { background: linear-gradient(135deg, #f9b234, #e1306c 50%, #833ab4); }
 .net-ig svg circle:last-child { fill: #fff; stroke: none; }
 .net-in { background: #0a66c2; }
-.net-sd { background: var(--grad); }
+.net-fb { background: #1877f2; font-family: Arial, sans-serif; font-size: 20px; }
+.net-tt { background: #111; }
+.net-tt svg { stroke: #fff; stroke-width: 2.2; filter: drop-shadow(-1px -1px 0 #25f4ee) drop-shadow(1px 1px 0 #fe2c55); }
+.net-yt { background: #ff0000; }
+.net-yt svg path.fill { fill: #fff; stroke: none; }
+.net-lg.net-fb { font-size: 26px; }
+
+.net-row { display: flex; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.net-row .net { width: 36px; height: 36px; }
 .net-lg { width: 48px; height: 48px; border-radius: 14px; font-size: 20px; }
 .net-lg svg { width: 26px; height: 26px; }
 
@@ -189,6 +238,10 @@ a { color: inherit; }
 .section-lede { margin-top: 14px; font-size: 18px; }
 
 .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+.grid-5 .card { padding: 26px 22px; }
+.grid-5 .card h3 { font-size: 19px; }
+.grid-5 .card p { font-size: 15px; }
 
 .card {
   padding: 32px;
@@ -248,6 +301,14 @@ a { color: inherit; }
 .media-b { background: linear-gradient(140deg, #0a66c2, #19a9c2); aspect-ratio: 4 / 3; }
 .media-c { background: linear-gradient(140deg, #7b4dff, #d63fae); }
 .post-text { font-size: 15px; }
+
+/* real Instagram post: Instagram's embed replaces the blockquote with an iframe */
+#examples .grid-3 { align-items: start; }
+.post-real { padding: 0; overflow: hidden; }
+.post-real .instagram-media,
+.post-real iframe { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 100% !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+.post-fallback { display: flex; flex-direction: column; gap: 16px; padding: 16px; text-decoration: none; }
+.post-fallback-cta { display: grid; place-items: center; aspect-ratio: 1; border-radius: 12px; background: var(--tint); color: var(--ink); font-weight: 700; }
 .post-text strong { color: var(--ink); margin-right: 4px; }
 
 /* pricing */
@@ -321,6 +382,10 @@ a { color: inherit; }
   .hero-visual { width: min(80%, 360px); order: -1; }
   .float-ig { left: -14%; }
   .float-in { right: -14%; }
+  .net-row { justify-content: center; }
+  /* stacked under the badge instead of overlapping it */
+  .growth-card { position: relative; left: auto; bottom: auto; width: 100%; margin-top: 20px; text-align: left; }
+  .grid-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .grid-3, .steps { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
   .cta-inner { flex-direction: column; text-align: center; }
 }
@@ -331,8 +396,8 @@ a { color: inherit; }
   .hero-facts { gap: 20px; }
   .float-card { padding: 8px 12px 8px 8px; font-size: 12px; }
   .float-ig { left: -8%; top: -2%; }
-  .float-in { right: -8%; bottom: -12%; }
-  .hero-visual { margin-bottom: 28px; }
+  .float-in { right: -8%; top: 30%; }
+  .grid-5 { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
   .price-card { padding: 32px 24px; }
 }
 
