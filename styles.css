@@ -255,7 +255,8 @@ main { position: relative; z-index: 2; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: min(100%, 560px);
+  /* also bounded by height, so logo and tagline fit on short laptop screens */
+  width: min(100%, 560px, 60vh);
   justify-self: center;
 }
 

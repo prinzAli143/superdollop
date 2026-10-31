@@ -161,16 +161,18 @@
 
       vec3 col = palette(n * 1.2 + length(q) * 0.6 + t * 2.0 + uScroll * 0.15);
       float density = smoothstep(0.42, 1.15, n * n * 2.2 + length(r) * 0.35);
-      col *= density * 1.25;
+      // Wide screens show much more nebula at once, so it is calmer there; phones keep full strength.
+      float wide = smoothstep(1.0, 1.8, uRes.x / uRes.y);
+      col *= density * mix(1.25, 0.7, wide);
       // Past the hero the nebula dims, so text further down the page stays readable.
-      col *= mix(1.0, 0.45, smoothstep(0.6, 2.0, uScroll));
+      col *= mix(1.0, mix(0.45, 0.28, wide), smoothstep(0.6, 2.0, uScroll));
 
       // luminous core near cursor
       float glow = exp(-length(uv - m) * 2.6);
       col += vec3(1.0, 0.35, 0.85) * glow * 0.35 * density;
 
       // vignette into the void
-      float vig = smoothstep(1.6, 0.2, length(uv * vec2(0.85, 1.1)));
+      float vig = smoothstep(1.6, 0.2, length(uv * vec2(mix(0.85, 1.0, wide), 1.1)));
       vec3 void_ = vec3(0.027, 0.008, 0.10);
       col = mix(void_, col + void_, vig);
 
