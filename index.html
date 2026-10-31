@@ -3,10 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Superdollop — A Cosmic Scoop of Data</title>
-  <meta name="description" content="Superdollop: a luminous gateway to the cosmos of data." />
+  <title>Superdollop — One post a day on Instagram &amp; LinkedIn</title>
+  <meta name="description" content="Superdollop publishes one post a day for your business on Instagram and LinkedIn. Launch offer: $300/month." />
   <meta name="theme-color" content="#07021a" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Superdollop — Show up every day" />
+  <meta property="og:description" content="One post a day for your business on Instagram and LinkedIn. Launch offer: $300/month." />
+  <meta property="og:image" content="https://prinzali143.github.io/superdollop/assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon-64.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800;900&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -18,81 +24,133 @@
   <div class="cursor" aria-hidden="true"></div>
 
   <header class="topbar">
-    <a class="logo" href="#top" aria-label="Superdollop home">
-      <span class="logo-orb"></span>
+    <a class="brand" href="#top" aria-label="Superdollop home">
+      <img src="assets/logo-96.webp" alt="" width="40" height="40" />
       <span>superdollop</span>
     </a>
-    <span class="coords" id="coords">RA 00h 00m · DEC +00° 00′</span>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#offer">Offer</a>
+      <a class="client-link" data-link="client" href="#">Client area</a>
+      <a class="nav-cta" data-link="contact" href="#">Get started</a>
+    </nav>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow reveal"><span class="pulse"></span> Transmission N°001 — from the edge of the data nebula</p>
-
-      <h1 class="title" aria-label="Superdollop">
-        <span class="line"><span class="word" data-text="SUPER">SUPER</span></span>
-        <span class="line"><span class="word" data-text="DOLLOP">DOLLOP</span></span>
-      </h1>
-
-      <div class="planet" aria-hidden="true">
-        <div class="planet-core"></div>
-        <div class="ring ring-a"></div>
-        <div class="ring ring-b"></div>
-        <div class="moon"></div>
+      <div class="hero-copy">
+        <p class="eyebrow reveal"><span class="pulse"></span> Launch offer · $300/month</p>
+        <h1 class="title">
+          <span class="line"><span class="word">Show up</span></span>
+          <span class="line"><span class="word">every day.</span></span>
+        </h1>
+        <p class="lede reveal">
+          We publish <strong>one post a day</strong> for your business on <strong>Instagram</strong> and
+          <strong>LinkedIn</strong>. You gain visibility, we handle the rest.
+        </p>
+        <div class="hero-actions reveal">
+          <a class="cta" data-link="contact" href="#">
+            <span class="cta-glow"></span>
+            <span class="cta-inner">
+              <span>Claim the launch offer</span>
+              <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5M19 5H8M19 5v11" /></svg>
+            </span>
+          </a>
+          <a class="ghost" href="#how">How it works</a>
+        </div>
       </div>
 
-      <p class="lede reveal">
-        A generous scoop of the universe’s data —<br />
-        stored in stardust, served by Python, glowing in real time.
-      </p>
-
-      <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
-        <span class="cta-glow"></span>
-        <span class="cta-inner">
-          <span class="cta-label">Launch into the data</span>
-          <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5M19 5H8M19 5v11" /></svg>
-        </span>
-      </a>
-
-      <div class="scroll-hint" aria-hidden="true"><span></span>scroll the cosmos</div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <img class="hero-logo" src="assets/logo.webp" alt="" width="640" height="640" />
+        <div class="toast toast-ig">
+          <span class="toast-icon ig"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" /></svg></span>
+          <span><strong>Posted today</strong><small>Instagram · 9:00 AM</small></span>
+        </div>
+        <div class="toast toast-in">
+          <span class="toast-icon in">in</span>
+          <span><strong>Posted today</strong><small>LinkedIn · 9:00 AM</small></span>
+        </div>
+      </div>
     </section>
 
     <!-- MARQUEE -->
     <section class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Luminous</span><i>✦</i><span>Cosmic</span><i>✦</i><span>Python-powered</span><i>✦</i><span>Supabase-fed</span><i>✦</i>
-        <span>Luminous</span><i>✦</i><span>Cosmic</span><i>✦</i><span>Python-powered</span><i>✦</i><span>Supabase-fed</span><i>✦</i>
+        <span>1 post a day</span><i>✦</i><span>Instagram</span><i>✦</i><span>LinkedIn</span><i>✦</i><span>More visibility</span><i>✦</i>
+        <span>1 post a day</span><i>✦</i><span>Instagram</span><i>✦</i><span>LinkedIn</span><i>✦</i><span>More visibility</span><i>✦</i>
       </div>
     </section>
 
-    <!-- ORBITS -->
-    <section class="orbits">
-      <article class="orbit-card reveal" style="--hue: 300">
-        <span class="orbit-num">01</span>
-        <h2>Stardust storage</h2>
-        <p>Every record lives in a Supabase constellation — persistent, queryable, alive.</p>
-      </article>
-      <article class="orbit-card reveal" style="--hue: 190">
-        <span class="orbit-num">02</span>
-        <h2>Python engines</h2>
-        <p>A lean API ignites on demand, pulling signals across the void at warp speed.</p>
-      </article>
-      <article class="orbit-card reveal" style="--hue: 40">
-        <span class="orbit-num">03</span>
-        <h2>Light, rendered</h2>
-        <p>Data arrives as light. You just have to look up — and press the button.</p>
-      </article>
+    <!-- NUMBERS -->
+    <section class="numbers" aria-label="The offer in numbers">
+      <div class="number reveal"><span class="big" data-count="1">1</span><span>post every day</span></div>
+      <div class="number reveal"><span class="big" data-count="2">2</span><span>networks: Instagram &amp; LinkedIn</span></div>
+      <div class="number reveal"><span class="big" data-count="30">30</span><span>posts a month</span></div>
+      <div class="number reveal"><span class="big">$<span data-count="10">10</span></span><span>per day, roughly</span></div>
     </section>
 
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <p class="kicker reveal">How it works</p>
+      <h2 class="section-title reveal">Your business, in orbit.<br />Every single day.</h2>
+      <div class="steps">
+        <article class="step reveal hue-300">
+          <span class="step-num">01</span>
+          <h3>Tell us about your business</h3>
+          <p>Your offer, your clients, your tone. We get to know your brand so every post sounds like you.</p>
+        </article>
+        <article class="step reveal hue-190">
+          <span class="step-num">02</span>
+          <h3>We create &amp; publish</h3>
+          <p>A new post goes live every day on your Instagram and your LinkedIn. No blank page, no missed day.</p>
+        </article>
+        <article class="step reveal hue-40">
+          <span class="step-num">03</span>
+          <h3>You gain visibility</h3>
+          <p>Showing up daily keeps your business in front of the people who matter, while you focus on your work.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- OFFER -->
+    <section class="section offer-section" id="offer">
+      <div class="offer reveal">
+        <div class="offer-glow" aria-hidden="true"></div>
+        <p class="badge">Launch offer</p>
+        <h2 class="offer-title">Daily social presence</h2>
+        <p class="price"><span class="amount">$300</span><span class="per">/ month</span></p>
+        <p class="price-note">That's about $10 a day.</p>
+        <ul class="perks">
+          <li>1 post published every day</li>
+          <li>On Instagram and LinkedIn</li>
+          <li>Made for your business</li>
+          <li>More visibility, day after day</li>
+        </ul>
+        <a class="cta cta-block" data-link="contact" href="#">
+          <span class="cta-glow"></span>
+          <span class="cta-inner">
+            <span>Claim the launch offer</span>
+            <svg class="cta-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19L19 5M19 5H8M19 5v11" /></svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- FINALE -->
     <section class="finale">
-      <p class="finale-text reveal">The universe is <em>mostly</em> data.<br />We just made it glow.</p>
+      <img class="finale-logo reveal" src="assets/logo.webp" alt="Superdollop" width="640" height="640" loading="lazy" />
+      <p class="finale-text reveal">Ready to be seen <em>every day</em>?</p>
+      <a class="ghost reveal" data-link="contact" href="#">Get started</a>
     </section>
   </main>
 
   <footer class="footer">
     <span>© <span id="year"></span> Superdollop</span>
-    <span>Made of stars ✦ and a little Python</span>
+    <span>Instagram &amp; LinkedIn, one post a day</span>
+    <a data-link="client" href="#">Client area</a>
   </footer>
 
   <script src="config.js"></script>

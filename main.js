@@ -2,57 +2,82 @@
   const config = window.SUPERDOLLOP_CONFIG || {};
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // ---------- CTA target ----------
-  const cta = document.getElementById("cta");
-  cta.href = config.apiUrl || "#";
+  // ---------- Links from config.js ----------
+  const targets = { contact: config.contactUrl, client: config.apiUrl };
+  document.querySelectorAll("[data-link]").forEach((a) => {
+    const url = targets[a.dataset.link];
+    if (url) {
+      a.href = url;
+      if (/^https?:/.test(url)) {
+        a.target = "_blank";
+        a.rel = "noopener";
+      }
+    } else {
+      a.removeAttribute("href");
+      a.setAttribute("aria-disabled", "true");
+    }
+  });
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
   // ---------- Pointer state ----------
   const pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
   const cursor = document.querySelector(".cursor");
-  const coords = document.getElementById("coords");
-
   window.addEventListener("pointermove", (e) => {
     pointer.tx = e.clientX / window.innerWidth;
     pointer.ty = e.clientY / window.innerHeight;
     if (cursor) cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    if (coords) {
-      const ra = pointer.tx * 24;
-      const dec = (0.5 - pointer.ty) * 180;
-      const h = Math.floor(ra);
-      const m = Math.floor((ra - h) * 60);
-      const d = Math.trunc(dec);
-      const dm = Math.floor(Math.abs(dec - d) * 60);
-      coords.textContent =
-        `RA ${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m · ` +
-        `DEC ${dec >= 0 ? "+" : "−"}${String(Math.abs(d)).padStart(2, "0")}° ${String(dm).padStart(2, "0")}′`;
-    }
   });
 
-  // ---------- Magnetic CTA ----------
-  cta.addEventListener("pointermove", (e) => {
-    const r = cta.getBoundingClientRect();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-    cta.style.setProperty("--mx", `${x}px`);
-    cta.style.setProperty("--my", `${y}px`);
-    if (!reduceMotion) {
-      cta.style.transform = `translate(${(x - r.width / 2) * 0.25}px, ${(y - r.height / 2) * 0.35}px)`;
-    }
+  // ---------- Magnetic buttons ----------
+  document.querySelectorAll(".cta").forEach((cta) => {
+    cta.addEventListener("pointermove", (e) => {
+      const r = cta.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      cta.style.setProperty("--mx", `${x}px`);
+      cta.style.setProperty("--my", `${y}px`);
+      if (!reduceMotion && !cta.classList.contains("cta-block")) {
+        cta.style.transform = `translate(${(x - r.width / 2) * 0.2}px, ${(y - r.height / 2) * 0.3}px)`;
+      }
+    });
+    cta.addEventListener("pointerleave", () => {
+      cta.style.transform = "";
+    });
   });
-  cta.addEventListener("pointerleave", () => {
-    cta.style.transform = "";
-  });
+
+  // ---------- Hero logo follows the pointer a little ----------
+  const visual = document.querySelector(".hero-visual");
+  if (visual && !reduceMotion) {
+    window.addEventListener("pointermove", (e) => {
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      visual.style.setProperty("--px", `${(x * 18).toFixed(1)}px`);
+      visual.style.setProperty("--py", `${(y * 18).toFixed(1)}px`);
+    });
+  }
+
+  // ---------- Count-up numbers ----------
+  const countUp = (el) => {
+    const target = Number(el.dataset.count);
+    if (!Number.isFinite(target) || reduceMotion) return;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / 1200, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - t, 4)));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
 
   // ---------- Reveal on scroll ----------
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-in");
-          io.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        entry.target.querySelectorAll("[data-count]").forEach(countUp);
+        io.unobserve(entry.target);
       });
     },
     { threshold: 0.15 }
@@ -137,6 +162,8 @@
       vec3 col = palette(n * 1.2 + length(q) * 0.6 + t * 2.0 + uScroll * 0.15);
       float density = smoothstep(0.42, 1.15, n * n * 2.2 + length(r) * 0.35);
       col *= density * 1.25;
+      // Past the hero the nebula dims, so text further down the page stays readable.
+      col *= mix(1.0, 0.45, smoothstep(0.6, 2.0, uScroll));
 
       // luminous core near cursor
       float glow = exp(-length(uv - m) * 2.6);

@@ -1,10 +1,9 @@
 # Superdollop
 
-Cosmic landing page for Superdollop. A single button sends visitors to the
-[superdollop-back](https://github.com/prinzAli143/superdollop-back) Python API,
-which serves data stored in Supabase.
+Showcase site for Superdollop, a social media agency: one post a day for your business on
+Instagram and LinkedIn. Launch offer: $300/month.
 
-Static site: no build step needed.
+Static site, no build step:
 
 ```bash
 python3 -m http.server 5173
@@ -12,16 +11,20 @@ python3 -m http.server 5173
 
 Then open http://localhost:5173.
 
-## Configuration
+## Configuration (`config.js`)
 
-Set the API URL the button points to in `config.js`:
+| Key | Used by |
+|---|---|
+| `contactUrl` | "Get started" / "Claim the launch offer" buttons: a `mailto:` link, a booking page or a profile URL |
+| `apiUrl` | "Client area" links: the [superdollop-back](https://github.com/prinzAli143/superdollop-back) back office |
 
-```js
-window.SUPERDOLLOP_CONFIG = { apiUrl: "https://your-api.example.com" };
-```
+## Assets
+
+`assets/logo.webp` and the icons are cut out from the source logo (its checkerboard background was
+baked into the JPG). `assets/og-image.jpg` is the social sharing preview.
 
 ## Stack
 
-- WebGL fragment shader: a domain-warped nebula plus parallax starfield that reacts to the cursor and scroll
+- WebGL nebula + parallax starfield reacting to the cursor and scroll (dims below the hero for readability)
 - Plain HTML/CSS/JS, fonts from Google Fonts (Unbounded, Space Grotesk)
 - Respects `prefers-reduced-motion`
