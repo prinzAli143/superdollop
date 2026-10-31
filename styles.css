@@ -250,14 +250,41 @@ main { position: relative; z-index: 2; }
 }
 .ghost:hover { color: var(--cyan); border-color: var(--cyan); }
 
-/* hero visual: the logo in orbit with "posted" notifications */
+/* hero visual: the logo in orbit with "posted" notifications, tagline below */
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 560px);
+  justify-self: center;
+}
+
 .hero-visual {
   --px: 0px;
   --py: 0px;
   position: relative;
   aspect-ratio: 1;
-  width: min(100%, 560px);
-  justify-self: center;
+  width: 100%;
+}
+
+.tagline {
+  margin: 4px 0 0;
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(18px, 2vw, 26px);
+  letter-spacing: -0.01em;
+  animation: appear 1.2s var(--ease-out) 0.5s both;
+}
+.tagline span {
+  display: block;
+  margin-top: 6px;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 0.62em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .hero-logo {
@@ -331,7 +358,8 @@ main { position: relative; z-index: 2; }
 
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding-top: 110px; text-align: left; }
-  .hero-visual { width: min(86%, 420px); order: -1; }
+  .hero-side { width: min(86%, 420px); order: -1; }
+  .tagline { margin-top: 36px; }
   .toast { padding: 9px 12px 9px 9px; font-size: 12px; }
   .toast-icon { width: 30px; height: 30px; }
   .toast-ig { top: 0; left: -10%; }
