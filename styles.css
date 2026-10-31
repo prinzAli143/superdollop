@@ -339,6 +339,8 @@ a { color: inherit; }
 .price-card h3 { margin-top: 16px; font-size: 22px; }
 .price { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-top: 18px; }
 .amount { color: var(--ink); font-size: clamp(52px, 7vw, 68px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.was { margin-right: 6px; color: var(--muted); font-size: clamp(24px, 3vw, 30px); font-weight: 700; text-decoration: line-through; text-decoration-color: #e0245e; text-decoration-thickness: 3px; }
+.was-sm { color: var(--muted); font-weight: 600; text-decoration: line-through; text-decoration-color: #e0245e; text-decoration-thickness: 2px; }
 .per { color: var(--muted); font-size: 18px; font-weight: 600; white-space: nowrap; }
 .price-note { margin-top: 6px; color: var(--muted); font-size: 15px; }
 .perks { margin: 28px 0 32px; padding: 0; list-style: none; text-align: left; display: grid; gap: 12px; }
