@@ -20,11 +20,12 @@ Then open http://localhost:5173.
 
 ## Assets
 
-`assets/logo.webp` and the icons are cut out from the source logo (its checkerboard background was
-baked into the JPG). `assets/og-image.jpg` is the social sharing preview.
+`assets/logo.webp` and the icons come from the source logo: its baked checkerboard was removed and
+the inside of the ring filled with navy so it reads on the light page. `assets/og-image.jpg` is the
+social sharing preview. Asset URLs in `index.html` carry a `?v=` number: bump it when they change.
 
 ## Stack
 
-- WebGL nebula + parallax starfield reacting to the cursor and scroll (dims below the hero for readability)
-- Plain HTML/CSS/JS, fonts from Google Fonts (Unbounded, Space Grotesk)
+- Plain HTML/CSS/JS, light agency layout: services, how it works, example posts, pricing
+- Font from Google Fonts (Plus Jakarta Sans)
 - Respects `prefers-reduced-motion`
