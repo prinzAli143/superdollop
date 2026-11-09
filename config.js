@@ -7,5 +7,5 @@ window.SUPERDOLLOP_CONFIG = {
   contactEmail: "superdollop@gmail.com",
   // After the form, visitors go to this Calendly page (20-minute event), with name and email prefilled.
   // Leave empty to show a "we'll email you" message instead.
-  calendlyUrl: "",
+  calendlyUrl: "https://calendly.com/superdollop",
 };
