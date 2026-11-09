@@ -2,14 +2,15 @@
   const config = window.SUPERDOLLOP_CONFIG || {};
   const form = document.getElementById("contact-form");
   if (!form) return;
-  const email = config.contactEmail || "";
+  // formKey is FormSubmit's random form ID, or the destination address base64-encoded so it never sits in the page as text.
+  const key = config.formKey || "";
+  const target = /^[a-f0-9]{20,}$/i.test(key) ? key : atob(key);
   const calendly = config.calendlyUrl || "";
   const submit = document.getElementById("contact-submit");
   const error = document.getElementById("form-error");
   const done = document.getElementById("contact-done");
   const doneText = document.getElementById("contact-done-text");
 
-  document.querySelectorAll("[data-email]").forEach((a) => { a.href = "mailto:" + email; a.textContent = email; });
   if (!calendly) submit.textContent = "Send";
 
   const showError = (msg) => { error.textContent = msg; error.hidden = false; };
@@ -70,7 +71,7 @@
     submit.disabled = true;
     submit.textContent = "Sending…";
     try {
-      const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(email), {
+      const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(target), {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
@@ -80,7 +81,7 @@
     } catch (err) {
       submit.disabled = false;
       submit.textContent = calendly ? "Continue to booking" : "Send";
-      showError(`We couldn't send your details. Please try again, or email us at ${email}.`);
+      showError("We couldn't send your details. Please try again in a moment.");
       return;
     }
     form.hidden = true;
