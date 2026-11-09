@@ -310,6 +310,7 @@ a { color: inherit; }
 .post-fallback { display: flex; flex-direction: column; gap: 16px; padding: 16px; text-decoration: none; }
 .post-fallback-cta { display: grid; place-items: center; aspect-ratio: 1; border-radius: 12px; background: var(--tint); color: var(--ink); font-weight: 700; }
 .post-text strong { color: var(--ink); margin-right: 4px; }
+.post-real iframe.yt-short { display: block; aspect-ratio: 9 / 16; height: auto; }
 
 /* pricing */
 .price-card {
