@@ -15,7 +15,9 @@ Then open http://localhost:5173.
 
 | Key | Used by |
 |---|---|
-| `contactUrl` | "Get started" / "Claim the launch offer" buttons: a `mailto:` link, a booking page or a profile URL |
+| `contactUrl` | "Get started" / "Claim the launch offer" buttons: `contact.html`, the contact form |
+| `contactEmail` | Where contact form submissions are emailed, through [FormSubmit](https://formsubmit.co) (the first submission sends an activation email to this address) |
+| `calendlyUrl` | Calendly page for the 20-minute call; after the form, visitors land there with name and email prefilled. Empty: the form shows a "we'll email you" message |
 | `apiUrl` | "Client area" links: the [superdollop-back](https://github.com/prinzAli143/superdollop-back) back office |
 
 ## Assets
