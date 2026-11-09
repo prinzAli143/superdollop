@@ -401,6 +401,7 @@ a { color: inherit; }
 .field .check:has(input:checked) { border-color: var(--violet); background: var(--tint); }
 .check input { accent-color: var(--violet); width: 16px; height: 16px; margin: 0; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.field-error { color: #b0204f; font-size: 14px; font-weight: 600; margin-top: -2px; }
 .form-error { color: #b0204f; font-weight: 600; font-size: 15px; }
 .form-note { font-size: 14px; color: var(--muted); text-align: center; }
 .form-note a { color: var(--ink); }

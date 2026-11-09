@@ -13,16 +13,43 @@
   if (!calendly) submit.textContent = "Send";
 
   const showError = (msg) => { error.textContent = msg; error.hidden = false; };
+  form.addEventListener("input", (e) => {
+    const el = e.target;
+    if (el.getAttribute("aria-invalid") !== "true") return;
+    el.removeAttribute("aria-invalid");
+    el.removeAttribute("aria-describedby");
+    document.getElementById(el.id + "-error")?.remove();
+    if (!form.querySelector("[aria-invalid]")) error.hidden = true;
+  });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     error.hidden = true;
     form.querySelectorAll("[aria-invalid]").forEach((el) => el.removeAttribute("aria-invalid"));
-    const bad = [...form.querySelectorAll("input[required]")].filter((el) => !el.value.trim() || !el.checkValidity());
+    form.querySelectorAll(".field-error").forEach((el) => el.remove());
+    const checks = {
+      first_name: (x) => (x ? "" : "Enter your first name."),
+      last_name: (x) => (x ? "" : "Enter your last name."),
+      email: (x) => (!x ? "Enter your email." : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x) ? "" : "This email looks incomplete. It should look like name@business.com."),
+      phone: (x) => (x.replace(/\D/g, "").length >= 7 ? "" : "Enter a phone number we can call."),
+    };
+    const bad = [];
+    Object.entries(checks).forEach(([id, check]) => {
+      const el = document.getElementById(id);
+      const msg = check(el.value.trim());
+      if (!msg) return;
+      el.setAttribute("aria-invalid", "true");
+      const p = document.createElement("p");
+      p.className = "field-error";
+      p.id = id + "-error";
+      p.textContent = msg;
+      el.setAttribute("aria-describedby", p.id);
+      el.after(p);
+      bad.push(el);
+    });
     if (bad.length) {
-      bad.forEach((el) => el.setAttribute("aria-invalid", "true"));
       bad[0].focus();
-      showError("Please fill in your first name, last name, a valid email and your phone number.");
+      showError(bad.length === 1 ? "One field needs a fix before we can send this." : `${bad.length} fields need a fix before we can send this.`);
       return;
     }
     const fd = new FormData(form);
